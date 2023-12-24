@@ -1,0 +1,23 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  scroll-behavior: smooth;
+  background-color: rgb(42, 43, 43);
+}
+
+:root {
+  --color-white: rgb(220, 218, 218);
+  --color-background: rgb(17, 17, 17);
+  --color-dark: rgb(23, 24, 24);
+  --color-green: rgb(92, 223, 92);
+}
