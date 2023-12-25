@@ -1,5 +1,5 @@
 import LogoNetflix from "../../assets/images/logo_netflix.png";
-import ic_user from "../../assets/images/ic_user.png"
+import ic_user2 from "../../assets/images/ic_user2.png"
 import { MdSearch } from "react-icons/md";
 import styled from "styled-components";
 import { useScrollY } from "../../CustomHooks";
@@ -56,11 +56,11 @@ function Navbar() {
         onChange={handleChangeInput}
         value={keywords}
         style={{
-          marginTop: "16px",
-          marginLeft: "0px", // Adjust the margin as needed
-          width: "300px",
+          marginTop: "8px",
+          marginLeft: "-30px", // Adjust the margin as needed
+          width: "500px",
           padding: "10px",
-          fontSize: "16px",
+          fontSize: "20px",
           border: "none",
           borderRadius: "8px",
           outline: "none",
@@ -69,7 +69,7 @@ function Navbar() {
     </div>
         </div>
           <div className="navUser" onClick={onClickUSer}>
-              <img src={ic_user} alt="logo netflix" />
+              <img src={ic_user2} alt="logo netflix" />
           </div>
           <div className="navModal">
               <User showModal={isShowModalUser ? true : false} ></User>
@@ -86,7 +86,7 @@ const Navigation = styled.div`
   left: 0;
   right: 0;
   height: 60px;
-  width: 1750px;
+  width: 100%; /* Set width to 100% to make it full-width */
   z-index: 10;
   transition: all 0.3s linear;
   @media (max-width: 1200px) {
@@ -99,11 +99,8 @@ const Navigation = styled.div`
     height: 100%;
     padding: 12px 5%;
     background-color: black;
-    //@media (max-width: 1000px) {
-    //  flex-direction: column;
-    //}
-    
-    .navSub{
+
+    .navSub {
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -120,26 +117,36 @@ const Navigation = styled.div`
         width: 100%;
       }
     }
-    .navUser{
-      width: 100px;
-      cursor: pointer;
-      img {
-        width: 40%;
-      }
-      justify-items: flex-end;
+   
+  .navUser {
+    position: relative;
+    width: 100px;
+    cursor: pointer;
+    img {
+      width: 40%;
     }
+    margin-left: auto;
+  }
+
+  .navModal {
+   
+  }
+
     .navSearch {
       color: white;
-      padding-right: 20px;
+      padding-right: 30px; // Tăng khoảng cách bên phải nếu cần thiết
       display: flex;
+      align-items: center;
       justify-content: flex-end;
+  
       .iconSearch {
-        width: 24px;
-        height: 24px;
+        width: 30px;
+        height: 30px;
         cursor: pointer;
-        transform: translate(30px, 9px);
         color: #bbb;
+        margin-left: 100px; // Thêm margin để di chuyển biểu tượng về phải
       }
+  
       &:hover .iconSearch {
         color: white;
       }
@@ -163,7 +170,6 @@ const Navigation = styled.div`
         }
       }
     }
-    .navModal{
-    }
+   
   }
 `;
