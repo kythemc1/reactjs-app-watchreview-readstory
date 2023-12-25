@@ -22,6 +22,7 @@ function SearchMovies() {
 
   return (
     <SearchPane>
+      <SearchInput placeholder="Search movies..." />
       {SearchMovies && SearchMovies.length > 0 ? (
         <div className="searchContent">
           {SearchMovies.map((movie, index) => {
@@ -50,12 +51,15 @@ function SearchMovies() {
 }
 
 export default SearchMovies;
+
 const SearchPane = styled.div`
   width: 100%;
   min-height: 92vh;
   padding-top: 80px;
   background: var(--color-background);
   transition: all 0.3s linear;
+  padding: 20px; /* Adjusted padding for input */
+  
   .searchContent {
     padding: 40px 60px;
     display: grid;
@@ -106,4 +110,14 @@ const SearchPane = styled.div`
 const NotFound = styled.div`
   padding: 5rem 8rem;
   color: var(--color-white);
+`;
+const SearchInput = styled.input`
+  width: 100%;
+  max-width: 400px; /* Adjusted max-width for the input */
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  outline: none;
 `;

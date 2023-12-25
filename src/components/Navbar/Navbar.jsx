@@ -48,15 +48,25 @@ function Navbar() {
             <img src={LogoNetflix} alt="logo netflix" />
           </div>
           {/* input */}
-          <div className="navSearch">
-            <MdSearch className="iconSearch" />
-            <input
-                type="text"
-                placeholder="Input title, genres, people"
-                onChange={handleChangeInput}
-                value={keywords}
-            />
-          </div>
+          <div className="navSearch" style={{ display: "flex", alignItems: "center" }}>
+      <MdSearch className="iconSearch" />
+      <input
+        type="text"
+        placeholder="    Input title, genres, people"
+        onChange={handleChangeInput}
+        value={keywords}
+        style={{
+          marginTop: "16px",
+          marginLeft: "16px", // Adjust the margin as needed
+          width: "200px",
+          padding: "10px",
+          fontSize: "16px",
+          border: "none",
+          borderRadius: "8px",
+          outline: "none",
+        }}
+      />
+    </div>
         </div>
         <div className="navUser" onClick={onClickUSer}>
           <img src={ic_user} alt="logo netflix" />
