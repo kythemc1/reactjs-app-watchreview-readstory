@@ -9,9 +9,6 @@ function User(props) {
     const handleCloseModal = () => {
         dispatch(setShowModalUser(false));
     };
-    const onClickToSignIn=()=>{
-
-    }
 
 
     return (

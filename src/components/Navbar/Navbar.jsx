@@ -57,8 +57,8 @@ function Navbar() {
         value={keywords}
         style={{
           marginTop: "16px",
-          marginLeft: "16px", // Adjust the margin as needed
-          width: "200px",
+          marginLeft: "0px", // Adjust the margin as needed
+          width: "300px",
           padding: "10px",
           fontSize: "16px",
           border: "none",
@@ -68,13 +68,12 @@ function Navbar() {
       />
     </div>
         </div>
-        <div className="navUser" onClick={onClickUSer}>
-          <img src={ic_user} alt="logo netflix" />
-
-        </div>
-        <div className="navModal">
-          <User showModal={isShowModalUser ? true : false} ></User>
-        </div>
+          <div className="navUser" onClick={onClickUSer}>
+              <img src={ic_user} alt="logo netflix" />
+          </div>
+          <div className="navModal">
+              <User showModal={isShowModalUser ? true : false} ></User>
+          </div>
       </div>
     </Navigation>
   );
@@ -87,7 +86,7 @@ const Navigation = styled.div`
   left: 0;
   right: 0;
   height: 60px;
-  width: 2000px;
+  width: 1750px;
   z-index: 10;
   transition: all 0.3s linear;
   @media (max-width: 1200px) {
@@ -95,7 +94,7 @@ const Navigation = styled.div`
   }
   .navContainer {
     display: flex;
-    //align-items: center;
+    align-items: center;
     justify-content: space-between;
     height: 100%;
     padding: 12px 5%;
@@ -106,7 +105,7 @@ const Navigation = styled.div`
     
     .navSub{
       display: flex;
-      //align-items: center;
+      align-items: center;
       justify-content: flex-start;
       height: 100%;
       padding: 12px 5%;
@@ -127,7 +126,7 @@ const Navigation = styled.div`
       img {
         width: 40%;
       }
-      //justify-items: flex-end;
+      justify-items: flex-end;
     }
     .navSearch {
       color: white;
