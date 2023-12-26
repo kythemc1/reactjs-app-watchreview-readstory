@@ -6,9 +6,13 @@ import MoviesRow from "../../components/Contents/MoviesRow";
 import {useDispatch, useSelector} from "react-redux";
 import * as ACTIONS from "../../store/MoviesSlice/MoviesSlice";
 import moment from "moment";
+
+import {useNavigate} from "react-router-dom";
 import ReactPlayer from "react-player";
+
 function Movie() {
     const dispatch = useDispatch();
+    const navigate= useNavigate();
     const { movie } = useSelector((state) => state.infoMovies);
     const [run,setRun]=useState(false);
 
@@ -26,7 +30,14 @@ function Movie() {
     }, [dispatch]);
     const handleReadStory = () => {
         // Add logic to handle reading story
-        console.log("Reading story..."+MovieCurrent);
+        navigate('/story');
+
+      };
+      const [isFollowed, setIsFollowed] = useState(false);
+      const handleFollow = () => {
+        setIsFollowed(!isFollowed);
+
+
       };
 
       const handleViewComments = () => {
@@ -59,6 +70,9 @@ function Movie() {
                         <Button onClick={handleReadStory}>Read Story</Button>
                         <Button onClick={handleViewComments}>
                             {showComments ? "Hide Comments" : "View Comments"}
+                        </Button>
+                        <Button onClick={handleFollow}>
+                        {isFollowed ? 'Unfollow' : 'Follow'}
                         </Button>
                         </ActionsContainer>
                         {/* Comments */}
