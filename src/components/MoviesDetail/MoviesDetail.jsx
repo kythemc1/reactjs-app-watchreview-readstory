@@ -1,4 +1,3 @@
-import moment from "moment/moment";
 import { useDispatch } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { setMoviesDetail} from "../../store/MoviesSlice/MoviesSlice";
@@ -33,9 +32,9 @@ function MoviesDetail(props) {
         style={
           movie
             ? {
-                backgroundImage: `url(https://image.tmdb.org/t/p/original/${
-                  movie.backdrop_path || movie.poster_path
-                })`,
+                backgroundImage: `${
+                  movie.source 
+                }`,
                 backgroundSize: "cover",
               }
             : {}
@@ -51,21 +50,25 @@ function MoviesDetail(props) {
             </h2>
             <p className="statistical">
               <span className="rating">
-                Rating: {movie && movie.vote_average * 10}%
+                Author: {movie && movie.author }
               </span>
-              <span className="popularity">
-                Popularity: {movie && movie.popularity}
-              </span>
-            </p>
-            <p className="releaseDate">
-              Release Date:{" "}
-              {movie && moment(movie.release_date).format("DD/MM/YYYY")}
-            </p>
-            <p className="runtime">
-              Runtime: {movie && (movie.runtime || movie.episode_run_time)}
-            </p>
 
-            <p className="overview">{movie && movie.overview}</p>
+            </p>
+              <p className="statistical">
+                    <span className="popularity">
+                                    Content: {movie && movie.content}
+                        </span>
+              </p>
+
+            {/*<p className="releaseDate">*/}
+            {/*  Release Date:{" "}*/}
+            {/*  {movie && moment(movie.release_date).format("DD/MM/YYYY")}*/}
+            {/*</p>*/}
+            {/*<p className="runtime">*/}
+            {/*  Runtime: {movie && (movie.runtime || movie.episode_run_time)}*/}
+            {/*</p>*/}
+
+            <p className="overview">{movie && movie.description}</p>
 
           </div>
         </div>
@@ -172,7 +175,7 @@ const MoviesDetailModal = styled.div`
           }
           .popularity {
             color: yellow;
-            margin-left: 20px;
+            margin-left: 0px;
           }
         }
         .releaseDate,
