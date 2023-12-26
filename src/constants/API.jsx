@@ -11,4 +11,10 @@ export const API={
     API_GET_CATE_ANIME: `${API_ROOT}/story/sort-by-category/anime/1`,
     API_GET_CATE_DRAMA: `${API_ROOT}/story/sort-by-category/drama/1`,
     API_GET_CATE_FAMILY: `${API_ROOT}/story/sort-by-category/family/1`,
+    API_GET_SEARCH_MOVIE:`${API_ROOT}/story/search-story`,
+
+
+    //
+    API_COUNT_CHAPTER:`${API_ROOT}/chapter/count-chapter`,
+    API_GET_CHAP:`${API_ROOT}/chapter/get-details`
 }

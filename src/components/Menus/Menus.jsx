@@ -1,6 +1,7 @@
 import { FaHotjar, FaStar } from "react-icons/fa";
 import { MdTheaterComedy } from "react-icons/md";
-import { SiNetflix } from "react-icons/si";
+import { SiAkamai } from "react-icons/si";
+import ghost from "../../assets/images/ghost.png"
 import {
   GiNinjaHeroicStance,
   GiRomanToga,
@@ -13,14 +14,14 @@ import MenuItem from "./MenuItem";
 function Menus() {
   return (
     <MenusPane>
-      <MenuItem name="Netflix" Icon={SiNetflix} to="netflix" />
-      <MenuItem name="Trending" Icon={FaHotjar} to="trending" />
-      <MenuItem name="Top rated" Icon={FaStar} to="toprated" />
-      <MenuItem name="Action Movies" Icon={GiNinjaHeroicStance} to="action" />
-      <MenuItem name="Comedy Movies" Icon={MdTheaterComedy} to="comedy" />
-      <MenuItem name="horror Movies" Icon={GiGhost} to="horror" />
-      <MenuItem name="Romance Movies" Icon={GiRomanToga} to="romance" />
-      <MenuItem name="Documentaries" Icon={GiBandageRoll} to="documentaries" />
+      <MenuItem name="Anime" Icon={SiAkamai} to="netflix" />
+      <MenuItem name="Drama" Icon={FaHotjar} to="trending" />
+      <MenuItem name="Family" Icon={FaStar} to="toprated" />
+      {/*<MenuItem name="Action Movies" Icon={GiNinjaHeroicStance} to="action" />*/}
+      {/*<MenuItem name="Comedy Movies" Icon={MdTheaterComedy} to="comedy" />*/}
+      {/*<MenuItem name="horror Movies" Icon={GiGhost} to="horror" />*/}
+      {/*<MenuItem name="Romance Movies" Icon={GiRomanToga} to="romance" />*/}
+      {/*<MenuItem name="Documentaries" Icon={GiBandageRoll} to="documentaries" />*/}
     </MenusPane>
   );
 }

@@ -21,7 +21,7 @@ function Intro() {
         className="videoIntro"
       />
       <div className="infoIntro">
-        <h1 className="headingIntro">NETFLIX The Rain</h1>
+        <h1 className="headingIntro">HKT groups</h1>
         <p className="overviewIntro">
           Trailer for Netflix series "The Rain" Production: Fox Devil Films GmbH
           for Netflix Amsterdam Director: Simon Ritzler Dop: Carlo Jelavic

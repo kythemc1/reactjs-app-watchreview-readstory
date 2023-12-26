@@ -5,39 +5,35 @@ import styled from "styled-components";
 import MoviesRow from "../../components/Contents/MoviesRow";
 import {useDispatch, useSelector} from "react-redux";
 import * as ACTIONS from "../../store/MoviesSlice/MoviesSlice";
-import moment from "moment";
 
 import {useNavigate} from "react-router-dom";
 import ReactPlayer from "react-player";
+import ListChapter from "../../components/ListChapter/ListChapter";
 
 function Movie() {
     const dispatch = useDispatch();
     const navigate= useNavigate();
-    const { movie } = useSelector((state) => state.infoMovies);
+    const {MovieCurrent,ChapterCurrent } = useSelector((state) => state.infoMovies);
     const [run,setRun]=useState(false);
 
     const onClickPlay=()=>{
+        console.log("asasda"+ChapterCurrent);
         setRun(!run);
     }
     const {
-        TrendingMovies,MovieCurrent
+        TrendingMovies
     } = useSelector((state) => state.infoMovies);
     const [showComments, setShowComments] = useState(false);
 
     useEffect(() => {
         dispatch(ACTIONS.getTopratedMovies());
-
     }, [dispatch]);
     const handleReadStory = () => {
-        // Add logic to handle reading story
         navigate('/story');
-
       };
       const [isFollowed, setIsFollowed] = useState(false);
       const handleFollow = () => {
         setIsFollowed(!isFollowed);
-
-
       };
 
       const handleViewComments = () => {
@@ -55,13 +51,14 @@ function Movie() {
             <ReactPlayer
                 playing={run}
                 // loop={true}
-                width="100%"
-                height="100%"
+                width="70%"
+                height="70%"
                 volume={1}
-                url= {MovieCurrent?.view}
+                url= {ChapterCurrent?.source_video}
                 className="videoIntro"
             />
             <Button onClick={onClickPlay}>Play/Pause</Button>
+            <ListChapter story={"truyen 10"}/>
             <div className="container">
 
                 <></>

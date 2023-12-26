@@ -26,16 +26,16 @@ function SearchMovies() {
       {SearchMovies && SearchMovies.length > 0 ? (
         <div className="searchContent">
           {SearchMovies.map((movie, index) => {
-            if (movie.backdrop_path !== null && movie.media_type !== "person") {
-              const imageUrl = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+            if (true) {
+              const  imageUrl = movie.source
               return (
                 <div
                   className="movieItem"
                   key={index}
                   onClick={() => dispatch(setMoviesDetail(movie))}
                 >
-                  <img src={imageUrl} alt={movie.title || movie.name} />
-                  <span>{movie.title || movie.name}</span>
+                  <img src={imageUrl} alt={ movie.name} />
+                  <span>{movie.name}</span>
                 </div>
               );
             }

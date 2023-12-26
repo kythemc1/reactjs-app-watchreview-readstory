@@ -12,7 +12,7 @@ export const getNetflixOriginals = createAsyncThunk(
     try {
       const result =await axios({
               method: "get",
-              url:API.API_GET_CATE_DRAMA,
+              url:API.API_GET_CATE_FAMILY,
               withCredentials: false,
           }
       )
@@ -44,14 +44,17 @@ export const getTrendingMovies = createAsyncThunk(
 export const getSearchMovies = createAsyncThunk(
   "infoMovies/getSearchMovies",
   async (keywords) => {
-    try {
-      const result = await axios.get(
-        `${BASE_URL}/search/multi?api_key=${API_KEY}&language=en-US&include_adult=false&query=${keywords}`
-      );
-      return result.data.results;
-    } catch (error) {
-      console.log("get data fail", error);
-    }
+      try {
+          const result =await axios({
+                  method: "get",
+                  url:`${API.API_GET_SEARCH_MOVIE}/${keywords}`,
+                  withCredentials: false,
+              }
+          )
+          return result.data;
+      } catch (error) {
+          console.log("get data fail", error);
+      }
   }
 );
 
@@ -157,7 +160,7 @@ const MoviesSlice = createSlice({
       MovieId: null,
       SumChapter: null,
       MovieCurrent:null,
-
+      ChapterCurrent: null
   },
 
   reducers: {
@@ -166,7 +169,9 @@ const MoviesSlice = createSlice({
     },
       setMovieCurrent:(state,action)=>{
         state.MovieCurrent=action.payload;
-
+      },
+      setChapterCurrent:(state,action)=>{
+        state.ChapterCurrent=action.payload;
       }
   },
 
@@ -206,5 +211,5 @@ const MoviesSlice = createSlice({
 });
 
 const { reducer, actions } = MoviesSlice;
-export const { setMoviesDetail,setMovieCurrent } = actions;
+export const { setMoviesDetail,setMovieCurrent,setChapterCurrent } = actions;
 export default reducer;
