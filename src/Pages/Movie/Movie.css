@@ -30,6 +30,14 @@
     font-size: 1em;
 }
 .container{
-    marginRight: 70px;
-    height: 130%;
+    /*marginRight: 70px;*/
+    height: 100%;
+    width: 100%;}
+.videoIntro {
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    right: 0;
+
+
 }

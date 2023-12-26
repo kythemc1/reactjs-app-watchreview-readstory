@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {API} from "../../constants/API";
 
 const API_KEY = "74d1111ff793d2c86a4104bab872bc34";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -9,10 +10,13 @@ export const getNetflixOriginals = createAsyncThunk(
   "infoMovies/getNetflixOriginals",
   async () => {
     try {
-      const result = await axios.get(`
-      ${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213
-    `);
-      return result.data.results;
+      const result =await axios({
+              method: "get",
+              url:API.API_GET_CATE_DRAMA,
+              withCredentials: false,
+          }
+      )
+        return result.data;
     } catch (error) {
       console.log("get data fail", error);
     }
@@ -23,10 +27,13 @@ export const getTrendingMovies = createAsyncThunk(
   "inforMovies/getTrendingMovies",
   async () => {
     try {
-      const result = await axios.get(`
-      ${BASE_URL}/trending/all/day?api_key=${API_KEY}
-    `);
-      return result.data.results;
+        const result =await axios({
+                method: "get",
+                url:API.API_GET_CATE_DRAMA,
+                withCredentials: false,
+            }
+        )
+        return result.data;
     } catch (error) {
       console.log("get data fail", error);
     }
@@ -48,18 +55,21 @@ export const getSearchMovies = createAsyncThunk(
   }
 );
 
-export const getTopratedMovies = createAsyncThunk(
-  "infoMovies/getTopratedMovies",
-  async () => {
-    try {
-      const result = await axios.get(`
-      ${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1
-    `);
-      return result.data.results;
-    } catch (error) {
-      console.log("get data fail", error);
+export const getTopratedMovies =createAsyncThunk(
+    "infoMovies/toprate",
+    async (keywords) => {
+        try {
+            const result =await axios({
+                    method: "get",
+                    url:API.API_GET_CATE_FAMILY,
+                    withCredentials: false,
+                }
+            )
+            return result.data;
+        } catch (error) {
+            console.log("get data fail", error);
+        }
     }
-  }
 );
 
 export const getActionMovies = createAsyncThunk(
@@ -144,7 +154,10 @@ const MoviesSlice = createSlice({
     MovieDetail: null,
     SearchMovies: null,
       MovieLink: null,
-      MovieId: null
+      MovieId: null,
+      SumChapter: null,
+      MovieCurrent:null,
+
   },
 
   reducers: {
@@ -152,8 +165,8 @@ const MoviesSlice = createSlice({
       state.MovieDetail = action.payload;
     },
       setMovieCurrent:(state,action)=>{
-        state.MovieLink = action.payload;
-        state.MovieId = action.payload;
+        state.MovieCurrent=action.payload;
+
       }
   },
 

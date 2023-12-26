@@ -19,69 +19,69 @@ function Contents() {
     NetflixOriginals,
     TrendingMovies,
     TopratedMovies,
-    ActionMovies,
-    ComedyMovies,
-    HorrorMovies,
-    RomanceMovies,
-    DocumentariesMovies,
-    loading,
+    // ActionMovies,
+    // ComedyMovies,
+    // HorrorMovies,
+    // RomanceMovies,
+    // DocumentariesMovies,
+    // loading,
   } = useSelector((state) => state.infoMovies);
 
   useEffect(() => {
     dispatch(ACTIONS.getNetflixOriginals());
-    dispatch(ACTIONS.getActionMovies());
+    // dispatch(ACTIONS.getActionMovies());
     dispatch(ACTIONS.getTrendingMovies());
     dispatch(ACTIONS.getTopratedMovies());
-    dispatch(ACTIONS.getComedyMovies());
-    dispatch(ACTIONS.getHorrorMovies());
-    dispatch(ACTIONS.getRomanceMovies());
-    dispatch(ACTIONS.getDocumentariesMovies());
+    // dispatch(ACTIONS.getComedyMovies());
+    // dispatch(ACTIONS.getHorrorMovies());
+    // dispatch(ACTIONS.getRomanceMovies());
+    // dispatch(ACTIONS.getDocumentariesMovies());
   }, [dispatch]);
 
   return (
     <div>
       <MoviesRow
         movies={NetflixOriginals}
-        loading={loading}
-        title="Netflix Originals"
-        isNetflix={true}
+        // loading={loading}
+        title="Anime"
+        // isNetflix={true}
         idSection="netflix"
       />
       <MoviesRow
         movies={TrendingMovies}
-        title="Trending Movies"
+        title="Drama"
         idSection="trending"
       />
       <MoviesRow
         movies={TopratedMovies}
-        title="Top Rated Movies"
+        title="Family"
         idSection="toprated"
       />
-      <MoviesRow
-        movies={ActionMovies}
-        title="Action Movies"
-        idSection="action"
-      />
-      <MoviesRow
-        movies={ComedyMovies}
-        title="Comedy Movies"
-        idSection="comedy"
-      />
-      <MoviesRow
-        movies={HorrorMovies}
-        title="Horror Movies"
-        idSection="horror"
-      />
-      <MoviesRow
-        movies={RomanceMovies}
-        title="Romance Movies"
-        idSection="romance"
-      />
-      <MoviesRow
-        movies={DocumentariesMovies}
-        title="Documentaries Movies"
-        idSection="documentaries"
-      />
+      {/*<MoviesRow*/}
+      {/*  movies={ActionMovies}*/}
+      {/*  title="Action Movies"*/}
+      {/*  idSection="action"*/}
+      {/*/>*/}
+      {/*<MoviesRow*/}
+      {/*  movies={ComedyMovies}*/}
+      {/*  title="Comedy Movies"*/}
+      {/*  idSection="comedy"*/}
+      {/*/>*/}
+      {/*<MoviesRow*/}
+      {/*  movies={HorrorMovies}*/}
+      {/*  title="Horror Movies"*/}
+      {/*  idSection="horror"*/}
+      {/*/>*/}
+      {/*<MoviesRow*/}
+      {/*  movies={RomanceMovies}*/}
+      {/*  title="Romance Movies"*/}
+      {/*  idSection="romance"*/}
+      {/*/>*/}
+      {/*<MoviesRow*/}
+      {/*  movies={DocumentariesMovies}*/}
+      {/*  title="Documentaries Movies"*/}
+      {/*  idSection="documentaries"*/}
+      {/*/>*/}
       <GoToTop
         onClick={() => ScrollToTop()}
         style={{

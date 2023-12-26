@@ -5,7 +5,7 @@ import { SmoothHorizontalScrolling } from "../../utils";
 import { useEffect } from "react";
 import { useViewport } from "../../CustomHooks/index";
 import { useDispatch } from "react-redux";
-import { setMoviesDetail } from "../../store/MoviesSlice/MoviesSlice";
+import {setMovieCurrent, setMoviesDetail} from "../../store/MoviesSlice/MoviesSlice";
 
 
 function MoviesRow(props) {
@@ -19,6 +19,7 @@ function MoviesRow(props) {
   const dispatch = useDispatch();
   const handleSetMovie = (movie) => {
     dispatch(setMoviesDetail(movie));
+    dispatch(setMovieCurrent(movie));
   };
 
   useEffect(() => {
@@ -92,10 +93,8 @@ function MoviesRow(props) {
           {movies &&
             movies.length > 0 &&
             movies.map((movie, index) => {
-              if (movie.poster_path && movie.backdrop_path !== null) {
-                let imageUrl = isNetflix
-                  ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                  : `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+              if (true) {
+                let imageUrl = movie.source
                 return (
                   <div
                     key={index}

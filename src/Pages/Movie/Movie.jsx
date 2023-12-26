@@ -6,59 +6,54 @@ import MoviesRow from "../../components/Contents/MoviesRow";
 import {useDispatch, useSelector} from "react-redux";
 import * as ACTIONS from "../../store/MoviesSlice/MoviesSlice";
 import moment from "moment";
+import ReactPlayer from "react-player";
 function Movie() {
     const dispatch = useDispatch();
     const { movie } = useSelector((state) => state.infoMovies);
+    const [run,setRun]=useState(false);
 
+    const onClickPlay=()=>{
+        setRun(!run);
+    }
     const {
-        TrendingMovies,
+        TrendingMovies,MovieCurrent
     } = useSelector((state) => state.infoMovies);
     const [showComments, setShowComments] = useState(false);
 
     useEffect(() => {
         dispatch(ACTIONS.getTopratedMovies());
+
     }, [dispatch]);
     const handleReadStory = () => {
         // Add logic to handle reading story
-        console.log("Reading story...");
+        console.log("Reading story..."+MovieCurrent);
       };
-    
+
       const handleViewComments = () => {
         // Toggle the state to show/hide comments
         setShowComments(!showComments);}
+
     return (
         <Movies className='container'>
-            <video id="video_1" className="video-js vjs-default-skin" controls data-setup='{}'>
-                <source src="https://vjs.zencdn.net/v/oceans.mp4?sd" type='video/mp4' label='SD' res='480'/>
-                <source src="https://vjs.zencdn.net/v/oceans.mp4?hd" type='video/mp4' label='HD' res='1080'/>
-                <source src="https://vjs.zencdn.net/v/oceans.mp4?phone" type='video/mp4' label='phone' res='144'/>
-                <source src="https://vjs.zencdn.net/v/oceans.mp4?4k" type='video/mp4' label='4k' res='2160'/>
-            </video>
+            {/*<video id="video_1" className="video-js vjs-default-skin" controls data-setup='{}'>*/}
+            {/*    <source src="https://www.youtube.com/watch?v=leJb3VhQCrg&list=RDIcNbh3T_tEI&index=8&ab_channel=W%2Fn" type='video/mp4' label='SD' res='480'/>*/}
+            {/*    <source src="https://vjs.zencdn.net/v/oceans.mp4?hd" type='video/mp4' label='HD' res='1080'/>*/}
+            {/*    <source src="https://vjs.zencdn.net/v/oceans.mp4?phone" type='video/mp4' label='phone' res='144'/>*/}
+            {/*    <source src="https://vjs.zencdn.net/v/oceans.mp4?4k" type='video/mp4' label='4k' res='2160'/>*/}
+            {/*</video>*/}
+            <ReactPlayer
+                playing={run}
+                // loop={true}
+                width="100%"
+                height="100%"
+                volume={1}
+                url= {MovieCurrent?.view}
+                className="videoIntro"
+            />
+            <Button onClick={onClickPlay}>Play/Pause</Button>
             <div className="container">
 
-                <div className="movieInfo">
-                    <h2 className="movieTitle">
-                        {movie && (movie.name || movie.title)}
-                    </h2>
-                    <p className="statistical">
-              <span className="rating">
-                Rating: {movie && movie.vote_average * 10}%
-              </span>
-                        <span className="popularity">
-                Popularity: {movie && movie.popularity}
-              </span>
-                    </p>
-                    <p className="releaseDate">
-                        Release Date:{" "}
-                        {movie && moment(movie.release_date).format("DD/MM/YYYY")}
-                    </p>
-                    <p className="runtime">
-                        Runtime: {movie && (movie.runtime || movie.episode_run_time)}
-                    </p>
-
-                    <p className="overview">{movie && movie.overview}</p>
-                   
-                </div>
+                <></>
                 <ActionsContainer>
                         {/* Buttons for reading story and viewing comments */}
                         <Button onClick={handleReadStory}>Read Story</Button>
@@ -69,6 +64,7 @@ function Movie() {
                         {/* Comments */}
                         {showComments && (
                         <CommentsContainer>
+
                             <Comment>
                             <CommentAuthor>John Doe:</CommentAuthor>
                             Comment text goes here...
