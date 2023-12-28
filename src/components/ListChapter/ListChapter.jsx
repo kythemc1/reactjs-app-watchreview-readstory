@@ -5,11 +5,10 @@ import {API} from "../../constants/API";
 import {setChapterCurrent} from "../../store/MoviesSlice/MoviesSlice";
 
 export default function ListChapter(props){
-    const {story} =props;
+    const {sumChap} =props;
     const dispatch = useDispatch();
     const [chap,setChap]=useState(1);
     const { MovieCurrent } = useSelector((state) => state.infoMovies);
-    const [sumChap,setSumChap]=useState();
     const onClickInput=(e)=>{
         e.preventDefault();
         axios({
@@ -24,34 +23,19 @@ export default function ListChapter(props){
     }
 
   ;
-    useEffect(()=>{
-        try {
-            axios({
-                    method: "get",
-                    url:`${API.API_COUNT_CHAPTER}/${story}`,
-                    withCredentials: false,
-                }
-            ).then(res =>{
-                console.log(res.data);
-                setSumChap(res.data);
-            })
 
-        } catch (error) {
-            console.log("get data fail", error);
-        }
-    })
     return(
-        <div style={{color:"#fff"}}>
+        <div style={{color:"#fff", display: 'flex', flexDirection:'column', gap: '1rem', marginTop: '1rem'}}>
             <p>Tổng Chapter : {sumChap}</p>
-            <p> Chọn Chapter bạn muốn xem : 1->{sumChap}</p>
-            <form style={{flexDirection: "row",justifyContent: "flex-start",height:40}} onSubmit={onClickInput}>
-                <input style={{width: 50,height:40}}
+            <p> Chọn Chapter bạn muốn xem : </p>
+            <form style={{width:'fit-content', display: 'flex', flexDirection: "row", justifyContent:'flex-start', gap: '1rem',height:'fit-content'}} onSubmit={onClickInput}>
+                <input style={{width: 40, height:40, textAlign: 'center', borderRadius: '0.5rem'}}
                     type="number"
                     onChange={(e) => setChap(e.target.value)}
                     value={chap}
                     required
                 />
-                <button style={{width: 80,height:40}}>Chọn</button>
+                <button style={{width: 80}}>Chọn</button>
             </form>
 
         </div>

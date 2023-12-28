@@ -57,11 +57,11 @@ function Contents() {
         title="Family"
         idSection="toprated"
       />
-      {/*<MoviesRow*/}
-      {/*  movies={ActionMovies}*/}
-      {/*  title="Action Movies"*/}
-      {/*  idSection="action"*/}
-      {/*/>*/}
+      <MoviesRow
+        movies={TrendingMovies}
+        title="Top Rated"
+        idSection="action"
+      />
       {/*<MoviesRow*/}
       {/*  movies={ComedyMovies}*/}
       {/*  title="Comedy Movies"*/}

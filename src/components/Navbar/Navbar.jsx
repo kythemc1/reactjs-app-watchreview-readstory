@@ -8,6 +8,7 @@ import { useState } from "react";
 import User from "../ModalUser/ModaUser";
 import {useDispatch, useSelector} from "react-redux";
 import {setShowModalUser} from "../../store/MoviesSlice/AuthSlice";
+import {setChapterCurrent, setMovieCurrent} from "../../store/MoviesSlice/MoviesSlice";
 
 function Navbar() {
   const [scrollY] = useScrollY();
@@ -31,6 +32,8 @@ function Navbar() {
   const goHome = () => {
     navigate("/");
     setKeywords("");
+      dispatch(setChapterCurrent(null));
+      dispatch(setMovieCurrent(null));
   };
 
   return (

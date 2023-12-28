@@ -80,43 +80,25 @@ const ModalUser = styled.div`
     }
 
     .container {
+      background-color: white;
+      border-radius: 25px;
       position: relative;
-      justify-content: flex-end;
+      padding: 1rem;
       width: 300px;
-      height: 100%;
-      background: #fff;
+      height: fit-content;
+    }
       .close {
-        font-size: 30px;
+        font-size: 24px;
+        color: black;
+        margin-left: 8px;
+        margin-top: 8px;
       }
       margin-left: 70%;
-      //@media screen and (max-width: 1184px)  {
-      //  background: linear-gradient(
-      //    90deg,
-      //    rgba(0, 0, 0, 0.95) 40%,
-      //    rgba(0, 0, 0, 0.733),
-      //    transparent
-      //  );
-      //}
-      //@media screen and (max-width: 980px) {
-      //  //background: linear-gradient(
-      //  //  90deg,
-      //  //  rgba(0, 0, 0, 0.95) 50%,
-      //  //  transparent
-      //  //);
-      //  //width: 100%;
-      //}
-      //@media screen and (max-width: 600px) {
-      //  background: linear-gradient(
-      //    90deg,
-      //    rgba(0, 0, 0, 0.95) 60%,
-      //    transparent
-      //  );
-      //}
-      
+
     }
   }
   .showModal {
-    //justify-content: flex-end;
+    justify-content: flex-end;
     top: 10%;
     //left: 0;
     opacity: 1;

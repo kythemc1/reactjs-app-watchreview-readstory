@@ -1,6 +1,29 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import ListChapter from "../../components/ListChapter/ListChapter";
+import {useSelector} from "react-redux";
+import axios from "axios";
+import {API} from "../../constants/API";
 
 const Story = () => {
+    const {MovieCurrent,ChapterCurrent } = useSelector((state) => state.infoMovies);
+    const [sumChap,setSumChap]=useState();
+
+    useEffect(()=>{
+        try {
+            axios({
+                    method: "get",
+                    url:`${API.API_COUNT_CHAPTER}/${MovieCurrent.name}`,
+                    withCredentials: false,
+                }
+            ).then(res =>{
+                console.log(res.data);
+                setSumChap(res.data);
+            })
+
+        } catch (error) {
+            console.log("get data fail", error);
+        }
+    })
     const ImageList = ({ images }) => {
         return (
             <div className="image-list-container">
@@ -12,20 +35,22 @@ const Story = () => {
     };
 
     const images = [
+        { url: ChapterCurrent?.source_image },
         { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
-        // Thêm các đường link ảnh khác vào đây nếu cần
+        // { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
+        // { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
+        // { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
+        // { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
+        // { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
+        // { url: 'https://mangaclaw.com/843ZuJVKuKQuzsyeGR/uploads-by-manga-lc-net-4.jpg' },
     ];
 
     return (
         <div className='story-container'>
-            <h1>Danh sách hình ảnh</h1>
+            <div style={{marginTop: 70,marginLeft: 30}}>
+                <ListChapter sumChap={sumChap}/>
+            </div>
+
             <ImageList images={images} />
             <style>
                 {`

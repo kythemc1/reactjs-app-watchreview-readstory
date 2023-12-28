@@ -17,7 +17,6 @@ export default function Tabs() {
 
     const onClickButtonLogin=(e)=>{
         e.preventDefault();
-        console.log(API.API_LOGIN);
         try {
             axios({
                 method: "post",
@@ -64,7 +63,6 @@ export default function Tabs() {
     }
     const onClickButtonSignUp=(e)=>{
         e.preventDefault();
-        console.log(API.API_SIGN_UP);
         try {
             axios({
                     method: "post",
@@ -111,7 +109,6 @@ export default function Tabs() {
                 setErrMsg('Login Failed');
             }
         }
-        console.log('logggggggggg'+userLogin+'ádasdas'+pwdLogin);
     }
 
     const onClickLogout=()=>{
@@ -125,12 +122,11 @@ export default function Tabs() {
         dispatch(setLogged(false));
     }
     const formLogin=()=>{
-        console.log(isLogged);
         return(
 
             <section>
                 <form onSubmit={onClickButtonLogin}>
-                    <label htmlFor="username">Username:</label>
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         id="username"
@@ -139,15 +135,15 @@ export default function Tabs() {
                         required
                     />
 
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
                         onChange={(e) => setPwdLogin(e.target.value)}
                         value={pwdLogin}
-                        required
-                    />
-                    <button >Sign In</button>
+                        required />
+                    <p style={{color: "black", fontSize: '14px', cursor: 'pointer', textDecoration: 'underline'}}>Quên mật khẩu ?</p>
+                    <button style={{cursor: 'pointer', marginTop:'1rem'}}>Sign In</button>
                 </form>
             </section>
         )
@@ -179,7 +175,7 @@ export default function Tabs() {
                     />
 
 
-                    <button>Sign Up</button>
+                    <button style={{cursor: 'pointer', marginTop: '1rem'}}>Sign Up</button>
                 </form>
 
             </section>
@@ -194,8 +190,8 @@ export default function Tabs() {
             <Tab>
                 {
                     !isLogged ? <div>
-                        <div>
-                            <h className='welcome-text'>Chào Khách</h>
+                        <div className='tab'>
+                            <h className='welcome-text'>Xin chào bạn đọc</h>
                         </div>
                         <div className="header" >
                             <div onClick={()=>{toggleTab(1)}}
@@ -216,16 +212,13 @@ export default function Tabs() {
                             </div>
                         </div>
                     </div> :
-                        <div style={{width:300}}>
-                            <div className="navUser">
-                                <img src={ic_user} alt="icon-user" />
+                        <div style={{width:300, alignItems: 'center', justifyContent: 'center'}}>
 
-                            </div>
                             <p className="textHello">
                                 Xin chào : {username} !
                             </p>
                             <div className="buttonSignOut">
-                                <button style={{alignSelf:"center"}} onClick={onClickLogout}>Logout</button>
+                                <button style={{alignSelf:"center", marginTop: '1rem'}} onClick={onClickLogout}>Logout</button>
 
                             </div>
                         </div>
@@ -241,6 +234,7 @@ const Tab = styled.div`
   .header{
     display: flex;
     margin-top: 30px;
+
   }
   .tabs{
     color: gray;
@@ -248,6 +242,7 @@ const Tab = styled.div`
     width: 150px;
     text-align: center;
     font-weight: bolder;
+    cursor: pointer;
   }
   .tabs-actives{
     color: black;
@@ -255,6 +250,7 @@ const Tab = styled.div`
     width:150px;
     text-align: center;
     font-weight: bolder;
+    cursor: pointer;
   }
   .content{
     display: none;
@@ -271,8 +267,8 @@ const Tab = styled.div`
   }
   .welcome-text{
     color: black;
-    font-size: 14px;
-    margin-left: 14px;
+    font-size: 18px;
+    font-weight: bold;
   }
   .navUser{
     width: 100px;
@@ -288,5 +284,10 @@ const Tab = styled.div`
   .buttonSignOut{
     text-align: center;
   }
+  .tab {
+    text-align: center;
+    justify-content: center;
+  }
+
 `
 

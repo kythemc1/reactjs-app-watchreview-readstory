@@ -17,7 +17,7 @@ function Menus() {
       <MenuItem name="Anime" Icon={SiAkamai} to="netflix" />
       <MenuItem name="Drama" Icon={FaHotjar} to="trending" />
       <MenuItem name="Family" Icon={FaStar} to="toprated" />
-      {/*<MenuItem name="Action Movies" Icon={GiNinjaHeroicStance} to="action" />*/}
+      <MenuItem name="Top Rate" Icon={GiNinjaHeroicStance} to="action" />
       {/*<MenuItem name="Comedy Movies" Icon={MdTheaterComedy} to="comedy" />*/}
       {/*<MenuItem name="horror Movies" Icon={GiGhost} to="horror" />*/}
       {/*<MenuItem name="Romance Movies" Icon={GiRomanToga} to="romance" />*/}

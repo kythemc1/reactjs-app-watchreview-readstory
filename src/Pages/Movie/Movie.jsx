@@ -9,12 +9,17 @@ import * as ACTIONS from "../../store/MoviesSlice/MoviesSlice";
 import {useNavigate} from "react-router-dom";
 import ReactPlayer from "react-player";
 import ListChapter from "../../components/ListChapter/ListChapter";
+import axios from "axios";
+import {API} from "../../constants/API";
 
 function Movie() {
     const dispatch = useDispatch();
     const navigate= useNavigate();
     const {MovieCurrent,ChapterCurrent } = useSelector((state) => state.infoMovies);
     const [run,setRun]=useState(false);
+    const [sumChap,setSumChap]=useState();
+
+
 
     const onClickPlay=()=>{
         console.log("asasda"+ChapterCurrent);
@@ -25,16 +30,25 @@ function Movie() {
     } = useSelector((state) => state.infoMovies);
     const [showComments, setShowComments] = useState(false);
 
+    useEffect(()=>{
+        try {
+            axios({
+                    method: "get",
+                    url:`${API.API_COUNT_CHAPTER}/${MovieCurrent.name}`,
+                    withCredentials: false,
+                }
+            ).then(res =>{
+                console.log(res.data);
+                setSumChap(res.data);
+            })
+
+        } catch (error) {
+            console.log("get data fail", error);
+        }
+    })
     useEffect(() => {
         dispatch(ACTIONS.getTopratedMovies());
     }, [dispatch]);
-    const handleReadStory = () => {
-        navigate('/story');
-      };
-      const [isFollowed, setIsFollowed] = useState(false);
-      const handleFollow = () => {
-        setIsFollowed(!isFollowed);
-      };
 
       const handleViewComments = () => {
         // Toggle the state to show/hide comments
@@ -42,35 +56,30 @@ function Movie() {
 
     return (
         <Movies className='container'>
-            {/*<video id="video_1" className="video-js vjs-default-skin" controls data-setup='{}'>*/}
-            {/*    <source src="https://www.youtube.com/watch?v=leJb3VhQCrg&list=RDIcNbh3T_tEI&index=8&ab_channel=W%2Fn" type='video/mp4' label='SD' res='480'/>*/}
-            {/*    <source src="https://vjs.zencdn.net/v/oceans.mp4?hd" type='video/mp4' label='HD' res='1080'/>*/}
-            {/*    <source src="https://vjs.zencdn.net/v/oceans.mp4?phone" type='video/mp4' label='phone' res='144'/>*/}
-            {/*    <source src="https://vjs.zencdn.net/v/oceans.mp4?4k" type='video/mp4' label='4k' res='2160'/>*/}
-            {/*</video>*/}
-            <ReactPlayer
-                playing={run}
-                // loop={true}
-                width="70%"
-                height="70%"
-                volume={1}
-                url= {ChapterCurrent?.source_video}
-                className="videoIntro"
-            />
+            <p style={{fontSize:25,color: "mintcream",padding : "1rem",fontWeight: 'bold'}}>{MovieCurrent.name} </p>
+            <IntroContainer>
+                <ReactPlayer
+                    playing={run}
+                    width="100%"
+                    height="100%"
+                    volume={1}
+                    url={ChapterCurrent?.source_video}
+                    className="videoIntro"
+                />
+            </IntroContainer>
             <Button onClick={onClickPlay}>Play/Pause</Button>
-            <ListChapter story={"truyen 10"}/>
+            <ListChapter sumChap={sumChap}/>
             <div className="container">
 
                 <></>
                 <ActionsContainer>
                         {/* Buttons for reading story and viewing comments */}
-                        <Button onClick={handleReadStory}>Read Story</Button>
                         <Button onClick={handleViewComments}>
                             {showComments ? "Hide Comments" : "View Comments"}
                         </Button>
-                        <Button onClick={handleFollow}>
-                        {isFollowed ? 'Unfollow' : 'Follow'}
-                        </Button>
+                        {/*<Button onClick={handleFollow}>*/}
+                        {/*{isFollowed ? 'Unfollow' : 'Follow'}*/}
+                        {/*</Button>*/}
                         </ActionsContainer>
                         {/* Comments */}
                         {showComments && (
@@ -107,29 +116,12 @@ Movie.propTypes = {
     justifyContent: 'center'
 };
 const Movies = styled.div`
-  height: 130%;
+  height: 100%;
    justify-items: center  ;
   margin-top: 100px;
   margin-left: 20px;
   background-color: black;
 `
-const MoviesContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-  margin-left: 20px;
-  background-color: black;
-`;
-
-const VideoContainer = styled.div`
-  flex: 1;
-`;
-
-const InfoContainer = styled.div`
-  flex: 1;
-  color: white;
-`;
-
 const ActionsContainer = styled.div`
   margin-top: 20px;
 
@@ -164,4 +156,15 @@ const CommentAuthor = styled.span`
   font-weight: bold;
   margin-right: 5px;
 `;
+const IntroContainer = styled.div`
+  background-color: var(--color-background);
+  color: var(--color-white);
+  position: relative;
+  padding-top: 36%;
+  .videoIntro {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }`
 export default Movie;

@@ -21,6 +21,10 @@ function MoviesDetail(props) {
         navigate('/story')
     }
 
+    const onClickButtonFollow=()=>{
+
+    }
+
   return (
     <MoviesDetailModal>
       <div
@@ -45,6 +49,7 @@ function MoviesDetail(props) {
           <div className="movieInfo">
               <button style={{backgroundColor:"red"}} onClick={()=>onCLickButtonWatch()}>Xem review</button>
               <button style={{backgroundColor:"red"}} onClick={()=>onCLickButtonRead()}>Đọc truyện</button>
+              <button style={{backgroundColor:"red"}} onClick={()=>onClickButtonFollow()}>Follow</button>
             <h2 className="movieTitle">
               {movie && (movie.name || movie.title)}
             </h2>
@@ -60,13 +65,6 @@ function MoviesDetail(props) {
                         </span>
               </p>
 
-            {/*<p className="releaseDate">*/}
-            {/*  Release Date:{" "}*/}
-            {/*  {movie && moment(movie.release_date).format("DD/MM/YYYY")}*/}
-            {/*</p>*/}
-            {/*<p className="runtime">*/}
-            {/*  Runtime: {movie && (movie.runtime || movie.episode_run_time)}*/}
-            {/*</p>*/}
 
             <p className="overview">{movie && movie.description}</p>
 
